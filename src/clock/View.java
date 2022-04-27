@@ -47,9 +47,22 @@ public class View implements Observer {
          
         button = new JButton("Long-Named Button 4 (PAGE_END)");
         pane.add(button, BorderLayout.PAGE_END);
-         
-        button = new JButton("5 (LINE_END)");
-        pane.add(button, BorderLayout.LINE_END);
+        //TODO variable name
+        
+
+        DefaultListModel<String> test = new DefaultListModel<>();
+
+
+          test.addElement("Alarms Set");          
+          test.addElement("01:00 pm");  
+          test.addElement("05:00 am");  
+          test.addElement("06:00 pm");  
+          test.addElement("09:00 am");
+        JList<String> list = new JList<>(test); 
+        list.setPreferredSize(new Dimension(100, 200));
+        pane.add(list, BorderLayout.LINE_END);
+        //button = new JButton("5 (LINE_END)");
+        //pane.add(button, BorderLayout.LINE_END);
         
         // End of borderlayout code
         
