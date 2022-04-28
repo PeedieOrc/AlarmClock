@@ -36,23 +36,36 @@ public class View implements Observer {
 // can then call list when new alarm is set or when button is pressed - can output list with already existing call
 
         
-        JButton button = new JButton("Button 1 (PAGE_START)");
+        JButton button = new JButton("Need something here or it crashes?");
         pane.add(button, BorderLayout.PAGE_START);
          
         panel.setPreferredSize(new Dimension(200, 200));
         pane.add(panel, BorderLayout.CENTER);
          
-        button = new JButton("Button 3 (LINE_START)");
-        pane.add(button, BorderLayout.LINE_START);
-         
-        button = new JButton("Long-Named Button 4 (PAGE_END)");
-        pane.add(button, BorderLayout.PAGE_END);
+        //button = new JButton("Button 3 (LINE_START)");
+        //pane.add(button, BorderLayout.LINE_START);
+
+        JPanel alarmClockSet = new JPanel();
+        alarmClockSet.setPreferredSize(new Dimension(150, 200)); 
+        pane.add(alarmClockSet,BorderLayout.LINE_START);
+        //#TODO must be a better way to store the numbers for the drop down - either using loop or internal timer? 
+        String hours[]={"1","2","3","4","5","6","7","8","9","10","11","12"};
+        String mins[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"}; 
+        JComboBox bcHours =new JComboBox(hours);
+        JComboBox bcMins =new JComboBox(mins);
+        alarmClockSet.add(bcHours, BorderLayout.CENTER);
+        alarmClockSet.add(bcMins, BorderLayout.LINE_START);
+        button = new JButton("Set Alarm");
+        alarmClockSet.add(button, BorderLayout.PAGE_END);
+
+
+        //button = new JButton("LETS FUCKING GO OW2!");
+        //pane.add(button, BorderLayout.PAGE_END);
         //TODO variable name
         
-
+        //button = new JButton("5 (LINE_END)");
+        //pane.add(button, BorderLayout.LINE_END);
         DefaultListModel<String> test = new DefaultListModel<>();
-
-
           test.addElement("Alarms Set");          
           test.addElement("01:00 pm");  
           test.addElement("05:00 am");  
@@ -61,8 +74,7 @@ public class View implements Observer {
         JList<String> list = new JList<>(test); 
         list.setPreferredSize(new Dimension(100, 200));
         pane.add(list, BorderLayout.LINE_END);
-        //button = new JButton("5 (LINE_END)");
-        //pane.add(button, BorderLayout.LINE_END);
+
         
         // End of borderlayout code
         
