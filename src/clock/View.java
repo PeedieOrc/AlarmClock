@@ -55,6 +55,13 @@ public class View implements Observer {
         alarmbutton.setToolTipText("Click this button to add an alarm for the set time");
         //Will only pass when initilised - will not send latest selection. Action listener on an action listner?
         //alarmbutton.addActionListener(new SetAlarmHandler(bcHours, this));
+
+        //define the sorted array here
+        final PriorityQueue<Person> q;
+        q = new SortedArrayPriorityQueue<>(8);
+        System.out.println("Using a sorted array.");
+
+
         alarmbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 String hours = bcHours.getSelectedItem().toString();
@@ -62,6 +69,22 @@ public class View implements Observer {
                 System.out.println("Current Alarm: " + hours + ":" + mins);
             //pass the below into sorted array 
                 
+                
+                Person person = new Person(hours);
+                int priority = Integer.parseInt(hours);
+                System.out.println("Adding " + person.getName() + " with priority " + priority);
+                try {
+                    q.add(person, priority);
+                    } catch (QueueOverflowException e) {
+                    System.out.println("Add operation failed: " + e);
+                }
+                try {
+                    String name = q.head().getName();
+                    System.out.println("The person at the head of the queue is " + name);
+                } catch (QueueUnderflowException e) {
+                    System.out.println("Can't get head of queue: " + e);
+                }
+                System.out.println(q);
             }
         });
 
