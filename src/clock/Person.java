@@ -9,13 +9,18 @@ package clock;
 public class Person {
 
     protected String name;
+    protected int longtime;
 
-    public Person(String name) {
+    public Person(String name, int longtime) {
         this.name = name;
+        this.longtime = longtime;
     }
 
     public String getName() {
         return name;
+    }
+    public int getLongTime() {
+        return longtime;
     }
 
     @Override
