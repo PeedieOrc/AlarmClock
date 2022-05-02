@@ -25,6 +25,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return getName();
+        //return Integer.toString(getLongTime());
+        return  name;
     }
 }
