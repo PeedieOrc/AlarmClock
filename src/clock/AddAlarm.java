@@ -79,8 +79,8 @@ public class AddAlarm implements ActionListener {
                 String mins = bcMins.getSelectedItem().toString();
                 //System.out.println("Current Alarm: " + hours + ":" + mins);
                 //pass the below into sorted array 
-                LocalTime time = LocalTime.parse(hoursString + ":" + mins + ":00");
-                int secondOfDay = time.toSecondOfDay();
+                //LocalTime time = LocalTime.parse(hoursString + ":" + mins + ":00");
+                
                 //put time conversation in here
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat formatter = new SimpleDateFormat("EE MMM dd ");
@@ -99,10 +99,23 @@ public class AddAlarm implements ActionListener {
                 System.out.println("alarm set to: " + (cal.getTimeInMillis()/100000) + " - " + cal);
                 System.out.println("Current Time as Int: " + (calendar.getTimeInMillis()/100000) + " - " + calendar);
 
-//working need to compare the hours and mins of these dates and if the selected alarm is before the current time then add a day to the calander date then store as an int
+                //working need to compare the hours and mins of these dates and if the selected alarm is before the current time then add a day to the calander date then store as an int
 
-                Person person = new Person(cal.HOUR_OF_DAY + ":" + cal.MINUTE, secondOfDay, cal);
-                System.out.println("Adding " + person.getName() + " with priority " + secondOfDay + "Date Info: " + cal);
+
+            //Log here to check if the current time > alarm if so then add a date
+            if (calendar.getTimeInMillis() > cal.getTimeInMillis() ) {
+                    cal.add(Calendar.DATE, 1);
+                    System.out.println("Inside if loop - added a day - " + cal);
+                };
+
+                
+
+
+
+                int secondOfDay = (int)(cal.getTimeInMillis()/100000);
+                //^^^^^^^^^^^^^^^^^^^^
+                Person person = new Person(hoursString + ":" + mins, secondOfDay, cal);
+                System.out.println("Adding " + person.getName() + " with priority " + secondOfDay);
                 try {
                     q.add(person, secondOfDay);
                 } catch (QueueOverflowException e) {
