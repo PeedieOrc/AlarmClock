@@ -12,12 +12,12 @@ import javax.swing.JLabel;
 public class DeleteHead implements ActionListener {
         private final PriorityQueue<Person> pDelete;
         JLabel alarmlist;
-        JLabel lablefirstscreen;
+       
         JLabel clockAlarms;
-    public DeleteHead(PriorityQueue<Person> p, JLabel j, JLabel l, JLabel k ) {
+    public DeleteHead(PriorityQueue<Person> p, JLabel j, JLabel k ) {
         pDelete = p;
         alarmlist=j;
-        lablefirstscreen=l;
+        
         clockAlarms =k;
     }
     public void actionPerformed(ActionEvent ae) { 
@@ -27,7 +27,7 @@ public class DeleteHead implements ActionListener {
                     System.out.println("Removing item from the head of the queue");
                     pDelete.remove();
                     alarmlist.setText(pDelete.toString());
-                    lablefirstscreen.setText(pDelete.toString());
+                    //lablefirstscreen.setText(pDelete.toString());
                     clockAlarms.setText(pDelete.toString());
                 } catch (QueueUnderflowException e) {
                     System.out.println("Can't remove head of queue: " + e);

@@ -152,9 +152,19 @@ public class View implements Observer {
         menuAdd.getAccessibleContext().setAccessibleDescription(
                 "Add new alarms");
         menuAdd.addActionListener(new AddAlarm(q, this, alarmlist));
-
+        
+        JMenuItem menuEdit= new JMenuItem("Add Edit",
+                KeyEvent.VK_T);
+        menuEdit.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        menuEdit.getAccessibleContext().setAccessibleDescription(
+                "Add new alarms");
+        menuEdit.addActionListener(new EditAlarmWindow(q, alarmlist));
+        
         menu.add(menuAbout);
         menu.add(menuAdd);    
+        menu.add(menuEdit);
+
         frame.setJMenuBar(menuBar);
         frame.setLocationRelativeTo(null);
 

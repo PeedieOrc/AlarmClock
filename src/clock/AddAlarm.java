@@ -135,9 +135,9 @@ public class AddAlarm implements ActionListener {
 
         //JButton button = new JButton("Long-Named Button 4 (PAGE_END)");
         //pane.add(button, BorderLayout.PAGE_END);
-        JButton editAlarm = new JButton("Edit set alarms");
-        alarmClockSet.add(editAlarm, BorderLayout.PAGE_END);
+        //JButton editAlarm = new JButton("Edit set alarms");
+        //alarmClockSet.add(editAlarm, BorderLayout.PAGE_END);
         //Will only pass when initilised - will not send latest selection. Action listener on an action listner?
-        editAlarm.addActionListener(new EditAlarmWindow(q, lablefirstscreen, alarmlist));
+        //editAlarm.addActionListener(new EditAlarmWindow(q, lablefirstscreen, alarmlist));
     }
 }
