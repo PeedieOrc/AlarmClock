@@ -64,4 +64,5 @@ public interface PriorityQueue<T> {
      * For example: [(Fred, 10), (Mabel, 15), (Jane, 5)]
      */
     public String toString();
+
 }

@@ -1,5 +1,6 @@
 package clock;
 
+
 /**
  * Implementation of the PriorityQueue ADT using a sorted array for storage.
  *
@@ -94,14 +95,14 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public String toString() {
-        String result = "[";
+        String result = "<html><h5>Current Set Alarms</h1><br/>";
         for (int i = 0; i <= tailIndex; i++) {
             if (i > 0) {
-                result = result + ", ";
+                result = result + "<br/>";
             }
-            result = result + storage[i];
+            result = result + ((PriorityItem<T>) storage[i]).getItem();
         }
-        result = result + "]";
+        result = result + "</html>";
         return result;
     }
 }
