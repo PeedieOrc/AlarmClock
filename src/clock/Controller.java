@@ -18,7 +18,7 @@ public class Controller {
         listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.update();
-                System.out.println(model.minute);
+                //System.out.println(model.minute);
             }
         };
         

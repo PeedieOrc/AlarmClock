@@ -17,6 +17,7 @@ public class View implements Observer {
 
         JFrame frame = new JFrame();
         panel = new ClockPanel(model);
+
         //frame.setContentPane(panel);
         frame.setTitle("Java Clock");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,6 +175,10 @@ public class View implements Observer {
 
         frame.pack();
         frame.setVisible(true);
+
+    //look at creating the action listener against the frame - if update check hours of model against head priority item. 
+
+
     }
 
     public void update(Observable o, Object arg) {
