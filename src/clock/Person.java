@@ -1,5 +1,7 @@
 package clock;
 
+import java.util.Calendar;
+
 /**
  * Minimal "person" class.
  *
@@ -10,10 +12,12 @@ public class Person {
 
     protected String name;
     protected int longtime;
+    protected Calendar storedtime;
 
-    public Person(String name, int longtime) {
+    public Person(String name, int longtime, Calendar storedtime) {
         this.name = name;
         this.longtime = longtime;
+        this.storedtime = storedtime; 
     }
 
     public String getName() {
@@ -22,6 +26,11 @@ public class Person {
     public int getLongTime() {
         return longtime;
     }
+
+    public Calendar getStoredTime() {
+    return storedtime;
+    }
+
 
     @Override
     public String toString() {

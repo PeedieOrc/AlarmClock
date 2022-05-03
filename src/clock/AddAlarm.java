@@ -101,8 +101,8 @@ public class AddAlarm implements ActionListener {
 
 //working need to compare the hours and mins of these dates and if the selected alarm is before the current time then add a day to the calander date then store as an int
 
-                Person person = new Person(cal.HOUR_OF_DAY + ":" + cal.MINUTE, secondOfDay);
-                System.out.println("Adding " + person.getName() + " with priority " + secondOfDay);
+                Person person = new Person(cal.HOUR_OF_DAY + ":" + cal.MINUTE, secondOfDay, cal);
+                System.out.println("Adding " + person.getName() + " with priority " + secondOfDay + "Date Info: " + cal);
                 try {
                     q.add(person, secondOfDay);
                 } catch (QueueOverflowException e) {
