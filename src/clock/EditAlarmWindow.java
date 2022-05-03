@@ -16,8 +16,8 @@ import javax.swing.JTextField;
 
 
 public class EditAlarmWindow implements ActionListener {
-    private String about;
-    private PriorityQueue<Person> alarm;
+    private final String about;
+    private final PriorityQueue<Person> alarm;
 public EditAlarmWindow (PriorityQueue<Person> p) {
         about = "Current set alarms";
         alarm = p;
@@ -32,7 +32,6 @@ public EditAlarmWindow (PriorityQueue<Person> p) {
         JPanel panel = new JPanel();
         final JPanel clockAlarms = new JPanel();
         clockAlarms.setPreferredSize(new Dimension(200, 200)); 
-                       
         final JLabel alarmlisttitle = new JLabel(about);
         clockAlarms.add(alarmlisttitle);
         final JLabel alarmlist = new JLabel(alarm.toString());
@@ -54,6 +53,10 @@ public EditAlarmWindow (PriorityQueue<Person> p) {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
         frame.setResizable(false);
+
+        delete.addActionListener(new DeleteHead(alarm, alarmlist));
+        edit.addActionListener(new EditAlarmQueue(alarm, alarmlist));
+
                 
 }
 }
