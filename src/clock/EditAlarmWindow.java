@@ -8,9 +8,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class EditAlarmWindow implements ActionListener {
@@ -37,14 +39,17 @@ public EditAlarmWindow (PriorityQueue<Person> p) {
         clockAlarms.add(alarmlist);
         final JPanel editclockAlarms = new JPanel();
         editclockAlarms.setPreferredSize(new Dimension(200, 200)); 
-        
         final JLabel editalarmtitle = new JLabel("Edit or Delete alarms");
-        editclockAlarms.add(editalarmtitle);
-        
-
+        editclockAlarms.add(editalarmtitle, BorderLayout.LINE_START);
+        JTextField idtextbox = new JTextField(15);
+        editclockAlarms.add(idtextbox,BorderLayout.CENTER);
+        JButton delete = new JButton("Delete");
+        editclockAlarms.add(delete,BorderLayout.LINE_END);
+        JButton edit = new JButton("Edit");
+        editclockAlarms.add(edit,BorderLayout.LINE_END);
+        //TODO add new listeners for Delete and EDIT - pop up window for edit with just text field and OK
         frame.add(clockAlarms,BorderLayout.LINE_END);
         frame.add(editclockAlarms,BorderLayout.CENTER);
-        frame.getContentPane().add(BorderLayout.CENTER, panel);
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
