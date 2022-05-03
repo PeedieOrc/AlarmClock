@@ -17,7 +17,7 @@ public class AboutClock implements ActionListener {
     private String about;
 
     public AboutClock(View aThis) {
-        about = "Created by Ray Banks. 055756";
+        about = "This clock will only go from the head item in the array queue. Created by Ray Banks. 055756";
     }
 @Override
     public void actionPerformed(ActionEvent e) { 

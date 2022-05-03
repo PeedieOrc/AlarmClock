@@ -49,26 +49,31 @@ public class View implements Observer {
         String mins[] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"}; 
         //String message = "Hello World";
         final JComboBox bcHours = new JComboBox(hours);
-        alarmClockSet.add(bcHours, BorderLayout.CENTER);
+        alarmClockSet.add(bcHours, BorderLayout.PAGE_START);
         final JComboBox bcMins = new JComboBox(mins);
-        alarmClockSet.add(bcMins, BorderLayout.LINE_START);
+        alarmClockSet.add(bcMins, BorderLayout.PAGE_START);
         JButton alarmbutton = new JButton("Set Alarm");
-        alarmClockSet.add(alarmbutton, BorderLayout.PAGE_END);
+        alarmClockSet.add(alarmbutton, BorderLayout.CENTER);
         alarmbutton.setToolTipText("Click this button to add an alarm for the set time");
-        //Will only pass when initilised - will not send latest selection. Action listener on an action listner?
-        //alarmbutton.addActionListener(new SetAlarmHandler(bcHours, this));
+
+ 
+        
+        
+
+        //editAlarm.addActionListener(new ActionListener() );
+       
 
         //define the sorted array here
-        //TODO - Maybe need to add to observer? 
+        
         final PriorityQueue<Person> q;
         q = new SortedArrayPriorityQueue<>(8);
         //System.out.println("Using a sorted array.");
         
         //display array here!
-        JPanel clockAlarms = new JPanel();
+        final JPanel clockAlarms = new JPanel();
         clockAlarms.setPreferredSize(new Dimension(150, 200)); 
         pane.add(clockAlarms,BorderLayout.LINE_END);               
-        final JList alarmlist = new JList(q.toString().split(","));
+        final JLabel alarmlist = new JLabel(q.toString());
         clockAlarms.add(alarmlist);
 
         alarmbutton.addActionListener(new ActionListener() {
@@ -93,7 +98,7 @@ public class View implements Observer {
                     System.out.println("Can't get head of queue: " + e);
                 }
                 System.out.println(q);
-                alarmlist.setListData(q.toString().split(","));
+                alarmlist.setText(q.toString());
             }
         });
 
@@ -101,7 +106,10 @@ public class View implements Observer {
         pane.add(button, BorderLayout.PAGE_END);
        
 
-        
+        JButton editAlarm = new JButton("Edit set alarms");
+        alarmClockSet.add(editAlarm, BorderLayout.PAGE_END);
+        //Will only pass when initilised - will not send latest selection. Action listener on an action listner?
+        editAlarm.addActionListener(new EditAlarmWindow(q));
         
         
         //button = new JButton("5 (LINE_END)");
@@ -109,14 +117,14 @@ public class View implements Observer {
 
         //menu - Could end up putting this in its own class... 
         JMenuBar menuBar;
-        JMenu menu, submenu;
+        JMenu menu;
         JMenuItem menuItem;
         //add file
         menuBar = new JMenuBar();
         menu = new JMenu("File");
         menu.setMnemonic(KeyEvent.VK_A);
         menu.getAccessibleContext().setAccessibleDescription(
-                "Add description here");
+                "Acces file menu");
         menuBar.add(menu);
         //add exit 
         JMenuItem exitItem = new JMenuItem("Exit");
