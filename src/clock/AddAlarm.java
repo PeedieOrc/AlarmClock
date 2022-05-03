@@ -9,6 +9,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
@@ -50,8 +51,8 @@ public class AddAlarm implements ActionListener {
         alarmClockSet.setPreferredSize(new Dimension(150, 200)); 
         pane.add(alarmClockSet,BorderLayout.LINE_START);
         //#TODO must be a better way to store the numbers for the drop down - either using loop or internal timer? 
-        String hours[]={"01","02","03","04","05","06","07","08","09","11","12","13","14","15","16","17","18","19","20","21","22","23",};
-        String mins[] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"}; 
+        String hours[]={"00","01","02","03","04","05","06","07","08","09","11","12","13","14","15","16","17","18","19","20","21","22","23",};
+        String mins[] = {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"}; 
         //String message = "Hello World";
         final JComboBox bcHours = new JComboBox(hours);
         alarmClockSet.add(bcHours, BorderLayout.PAGE_START);
@@ -71,18 +72,36 @@ public class AddAlarm implements ActionListener {
         frame.setLocationRelativeTo(null);
         alarmbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                String hours = bcHours.getSelectedItem().toString();
+                //for some reason the hour - is reading one ahead of what it should - so i need to take away one from the input
+                //FUCKING BRITISH SUMMER TIME
+
+                String hoursString = bcHours.getSelectedItem().toString();
                 String mins = bcMins.getSelectedItem().toString();
                 //System.out.println("Current Alarm: " + hours + ":" + mins);
                 //pass the below into sorted array 
-                LocalTime time = LocalTime.parse(hours + ":" + mins + ":00");
+                LocalTime time = LocalTime.parse(hoursString + ":" + mins + ":00");
                 int secondOfDay = time.toSecondOfDay();
                 //put time conversation in here
                 Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                System.out.println(formatter.format(calendar.getTime()) + " "+ hours +":"+mins+";00");
+                SimpleDateFormat formatter = new SimpleDateFormat("EE MMM dd ");
 
-                Person person = new Person(hours + ":" + mins, secondOfDay);
+                //hard coded year - yuk Sorry if you find this! 
+                System.out.println(formatter.format(calendar.getTime()) + hoursString +":"+mins+":01 BST 2022");
+                String timetoadd = formatter.format(calendar.getTime()) + hoursString +":"+mins+":01 BST 2022";
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
+                try {
+                cal.setTime(sdf.parse(timetoadd));// all done
+                }
+                catch(ParseException e) {  
+                    System.out.println(e);
+                }
+                System.out.println("alarm set to: " + (cal.getTimeInMillis()/1000) + " - " + cal);
+                System.out.println("Current Time as Int: " + (calendar.getTimeInMillis()/1000) + " - " + calendar);
+
+//working need to compare the hours and mins of these dates and if the selected alarm is before the current time then add a day to the calander date then store as an int
+
+                Person person = new Person(hoursString + ":" + mins, secondOfDay);
                 System.out.println("Adding " + person.getName() + " with priority " + secondOfDay);
                 try {
                     q.add(person, secondOfDay);
