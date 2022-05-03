@@ -9,7 +9,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -66,7 +68,7 @@ public class AddAlarm implements ActionListener {
         clockAlarms.add(alarmlist);
         frame.pack();
         frame.setVisible(true);
-
+        frame.setLocationRelativeTo(null);
         alarmbutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 String hours = bcHours.getSelectedItem().toString();
@@ -75,6 +77,11 @@ public class AddAlarm implements ActionListener {
                 //pass the below into sorted array 
                 LocalTime time = LocalTime.parse(hours + ":" + mins + ":00");
                 int secondOfDay = time.toSecondOfDay();
+                //put time conversation in here
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                System.out.println(formatter.format(calendar.getTime()) + " "+ hours +":"+mins+";00");
+
                 Person person = new Person(hours + ":" + mins, secondOfDay);
                 System.out.println("Adding " + person.getName() + " with priority " + secondOfDay);
                 try {

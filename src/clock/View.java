@@ -156,7 +156,7 @@ public class View implements Observer {
         menu.add(menuAbout);
         menu.add(menuAdd);    
         frame.setJMenuBar(menuBar);
-
+        frame.setLocationRelativeTo(null);
 
 
 
