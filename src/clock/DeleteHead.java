@@ -12,9 +12,13 @@ import javax.swing.JLabel;
 public class DeleteHead implements ActionListener {
         private final PriorityQueue<Person> pDelete;
         JLabel alarmlist;
-    public DeleteHead(PriorityQueue<Person> p, JLabel j) {
+       
+        JLabel clockAlarms;
+    public DeleteHead(PriorityQueue<Person> p, JLabel j, JLabel k ) {
         pDelete = p;
         alarmlist=j;
+        
+        clockAlarms =k;
     }
     public void actionPerformed(ActionEvent ae) { 
         //need to amend the prioty item queue to look for and delete the specific item menction in the text box
@@ -23,6 +27,8 @@ public class DeleteHead implements ActionListener {
                     System.out.println("Removing item from the head of the queue");
                     pDelete.remove();
                     alarmlist.setText(pDelete.toString());
+                    //lablefirstscreen.setText(pDelete.toString());
+                    clockAlarms.setText(pDelete.toString());
                 } catch (QueueUnderflowException e) {
                     System.out.println("Can't remove head of queue: " + e);
                 }
