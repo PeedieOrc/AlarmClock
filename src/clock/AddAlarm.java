@@ -96,8 +96,8 @@ public class AddAlarm implements ActionListener {
                 catch(ParseException e) {  
                     System.out.println(e);
                 }
-                System.out.println("alarm set to: " + (cal.getTimeInMillis()/100000) + " - " + cal);
-                System.out.println("Current Time as Int: " + (calendar.getTimeInMillis()/100000) + " - " + calendar);
+                //System.out.println("alarm set to: " + (cal.getTimeInMillis()/100000) + " - " + cal);
+                //System.out.println("Current Time as Int: " + (calendar.getTimeInMillis()/100000) + " - " + calendar);
 
                 //working need to compare the hours and mins of these dates and if the selected alarm is before the current time then add a day to the calander date then store as an int
 
@@ -105,7 +105,7 @@ public class AddAlarm implements ActionListener {
             //Log here to check if the current time > alarm if so then add a date
             if (calendar.getTimeInMillis() > cal.getTimeInMillis() ) {
                     cal.add(Calendar.DATE, 1);
-                    System.out.println("Inside if loop - added a day - " + cal);
+                    System.out.println("Inside if loop - added a day");
                 };
 
                 
