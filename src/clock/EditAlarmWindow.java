@@ -14,18 +14,34 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**
+ * Loads the edit alarms screen- edit alarms does not work just yet - needed to create another function within priority queue to do this rather than just delete the head
+ * @author Ray Banks
+ * @version 1 06/05/2022
+ *  
+ */
 public class EditAlarmWindow implements ActionListener {
     private final String about;
     private final PriorityQueue<Person> alarm;
  
     private final JLabel clockAlarmslist;
-public EditAlarmWindow (PriorityQueue<Person> p, JLabel j) {
+
+    /**
+     *
+     * @param p
+     * @param j
+     */
+    public EditAlarmWindow (PriorityQueue<Person> p, JLabel j) {
         about = "Current set alarms";
         alarm = p;
         clockAlarmslist = j;
     System.out.println(alarm.toString());
     }
+
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) { 
         

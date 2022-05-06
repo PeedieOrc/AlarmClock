@@ -93,6 +93,10 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         return tailIndex < 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String result = "<html><h5>Current Set Alarms</h1><br/>";

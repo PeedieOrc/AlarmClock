@@ -14,10 +14,20 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.logging.Logger;
 
+/**
+ * this will load the initial interface - some of the action listeners are also build into here
+ * @author Ray Banks
+ * @version 1 06/05/2022
+ *  
+ */
 public class View implements Observer {
 
     ClockPanel panel;
 
+    /**
+     *
+     * @param model
+     */
     public View(Model model) {
 
         JFrame frame = new JFrame();
@@ -155,6 +165,11 @@ public class View implements Observer {
         new AlarmListner(model, q);
     }
 
+    /**
+     *
+     * @param o
+     * @param arg
+     */
     public void update(Observable o, Object arg) {
         panel.repaint();
     }

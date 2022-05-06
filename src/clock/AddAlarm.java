@@ -25,8 +25,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
- * @author Terra
+ * This Class will take open the add alarm screen - and pass the information across to the priority queue
+ * @author Ray Banks
+ * @version 1 06/05/2022
+ *  
  */
 public class AddAlarm implements ActionListener {
 
@@ -34,12 +36,22 @@ public class AddAlarm implements ActionListener {
     private final JLabel lablefirstscreen;
     private final PriorityQueue<Person> q;
 
+    /**
+     * 
+     * @param aThis
+     * @param a
+     * @param l
+     */
     public AddAlarm(PriorityQueue<Person> aThis, View a, JLabel l ) {
         about = "Add Alarms";
         q = aThis;
         lablefirstscreen = l;
     }
 
+    /**
+     *
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
 
 //        System.out.println(about);

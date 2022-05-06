@@ -6,16 +6,30 @@ import java.awt.geom.*;
 import java.awt.font.*;
 import javax.swing.*;
 
+/**
+ * Class to load the clock face
+ * @author Ray Banks
+ * @version 1 06/05/2022
+ *  
+ */
 public class ClockPanel extends JPanel {
     
     Model model;
     
+    /**
+     *
+     * @param m
+     */
     public ClockPanel(Model m) {
         model = m;
         setPreferredSize(new Dimension(200, 200));
         setBackground(Color.white);
     }
     
+    /**
+     *
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         

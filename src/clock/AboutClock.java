@@ -10,10 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * this lass will open the about window and display the below message to the user
+ * this class will open the about window and display the below message to the user
  * @author Ray Banks
- * @version 1.2    
- * @date 06/05/2022
+ * @version 1 06/05/2022
+ *  
  */
 public class AboutClock implements ActionListener {
     private String about;

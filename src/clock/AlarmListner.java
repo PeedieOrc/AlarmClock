@@ -12,6 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+/**
+ * This class created the action listener for the alarm at the head of the priority queue
+ * @author Ray Banks
+ * @version 1 06/05/2022
+ *  
+ */
 public class AlarmListner {
 
     ActionListener listener;
@@ -19,7 +25,11 @@ public class AlarmListner {
     Model model;
     private final PriorityQueue<Person> queue;
 
-
+    /**
+     *
+     * @param m
+     * @param q
+     */
     public AlarmListner(Model m, final PriorityQueue<Person> q) {
         queue = q;
         model = m;
