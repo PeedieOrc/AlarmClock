@@ -82,20 +82,6 @@ public class View implements Observer {
 
 
 
-//                    String testExample = "UID:uid1@example.com\r\nDTSTAMP:19970714T170000Z\r\nORGANIZER;CN=Alarm Clock:MAILTO:Alarm.CLock@example.com\r\nDTSTART:19970714T170000Z\r\nDTEND:19970715T035959Z\r\nSUMMARY:ALARM\r\n";
-//                    String test1 = "UID:uid1@example.com\r\n";
-//                    String date1 = "DTSTAMP:" + time + "\r\n";
-//                    String test2 = "ORGANIZER;CN=Alarm Clock:MAILTO:Alarm.CLock@example.com\r\n";
-//                    String date2 = "DTSTART:" + time + "\r\n";
-//                    String date3 = "nDTEND:" + time + "\r\n";
-//                    String test3 = "SUMMARY:ALARM\r\n";
-//                    String version = "VERSION:1.0 \r\n";
-//                    String prodid = "PRODID://Elara/lofy/tanare/delp/314sum2015// \r\n";
-//                    String calBegin = "BEGIN:VCALENDAR \r\n";
-//                    String calEnd = "END:VCALENDAR \r\n";
-//                    String eventBegin = "BEGIN:VEVENT \r\n";
-//                    String eventEnd = "END:VEVENT \r\n";
-
                     try {
 
                         File file = new File(builder.toString());
@@ -111,20 +97,6 @@ public class View implements Observer {
                         bw.write(personCalander);
                         bw.write(peronLongtime);
 
-
-//                        bw.write(calBegin);
-//                        bw.write(version);
-//                        bw.write(prodid);
-//                        bw.write(eventBegin);
-//                        //bw.write(testExample);
-//                        bw.write(test1);
-//                        bw.write(date1);
-//                        bw.write(test2);
-//                        bw.write(date2);
-//                        bw.write(date3);
-//                        bw.write(test3);
-//                        bw.write(eventEnd);
-//                        bw.write(calEnd);
 
                         bw.close();
 
