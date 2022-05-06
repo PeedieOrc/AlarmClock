@@ -29,7 +29,7 @@ public class AlarmListner {
                 Calendar date = Calendar.getInstance();
                 
 
-                System.out.println("Action Listner");
+                System.out.println("ALARM Listner");
                 try {
                     long alarmMillis = queue.head().storedtime.getTimeInMillis()/10000;
                     long currentMillis = date.getTimeInMillis()/10000;

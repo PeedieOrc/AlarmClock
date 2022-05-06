@@ -9,10 +9,15 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -61,11 +66,50 @@ public class AddAlarm implements ActionListener {
         JButton alarmbutton = new JButton("Set Alarm");
         alarmClockSet.add(alarmbutton, BorderLayout.CENTER);
         alarmbutton.setToolTipText("Click this button to add an alarm for the set time");
+        //add button here to import alarms
+        
         final JPanel clockAlarms = new JPanel();
         clockAlarms.setPreferredSize(new Dimension(150, 200));
         pane.add(clockAlarms, BorderLayout.LINE_END);
         final JLabel alarmlist = new JLabel(q.toString());
-        
+        JButton alarmimport = new JButton("Import Alarms");
+        alarmClockSet.add(alarmimport, BorderLayout.PAGE_END);
+        alarmimport.setToolTipText("Click here to import alarms");
+        alarmimport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent aae) {  
+                System.out.println("Import Pressed");
+                try {
+                      File myObj = new File("alarms.ics");
+                      Scanner myReader = new Scanner(myObj);
+                      while (myReader.hasNextLine()) {
+                        
+                        String name = myReader.nextLine();
+                        long seconds2 = Long.parseLong(myReader.nextLine());                        
+                        int seconds = Integer. parseInt(myReader.nextLine());
+                        
+                        Calendar calanderread = Calendar.getInstance();
+                        calanderread.setTimeInMillis(seconds2);
+                        System.out.println(name + " " + seconds + " " + seconds2);
+                        Person person = new Person(name, seconds, calanderread);
+                        q.add(person, seconds);
+                        //reading file does work however doesnt re-fresh alarm displays. 
+                      }
+                      myReader.close();
+                    } catch (FileNotFoundException e) {
+                      System.out.println("An error occurred.");
+                      e.printStackTrace();
+                    } catch (QueueOverflowException ex) {
+                    Logger.getLogger("Unable to add alarm from file: " + ex);
+                }
+
+
+
+                }
+            });
+
+
+
+          
         clockAlarms.add(alarmlist);
         frame.pack();
         frame.setVisible(true);
@@ -107,8 +151,7 @@ public class AddAlarm implements ActionListener {
             if (calendar.getTimeInMillis() > cal.getTimeInMillis() ) {
                     cal.add(Calendar.DATE, 1);
                     System.out.println("Inside if loop - added a day");
-                };
-
+                }
                 
 
 
