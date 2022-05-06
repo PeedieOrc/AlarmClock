@@ -4,10 +4,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.time.LocalTime;
+import java.io.BufferedWriter;
+import java.io.File;
 import javax.swing.*;
 import java.util.Observer;
 import java.util.Observable;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class View implements Observer {
 
@@ -63,6 +70,51 @@ public class View implements Observer {
         class ExitItemListener implements ActionListener {
 
             public void actionPerformed(ActionEvent event) {
+                String filename = "Alarms.ics";
+                try{
+                Long time = q.head().storedtime.getTimeInMillis();
+                System.out.println(time);
+                
+                } catch (QueueUnderflowException ex) {
+                    Logger.getLogger("something went wrong");
+                }
+                
+                StringBuilder builder = new StringBuilder();
+                builder.append(filename);
+                String testExample = "UID:uid1@example.com\r\nDTSTAMP:19970714T170000Z\r\nORGANIZER;CN=Alarm Clock:MAILTO:Alarm.CLock@example.com\r\nDTSTART:19970714T170000Z\r\nDTEND:19970715T035959Z\r\nSUMMARY:ALARM\r\n";
+                String version =    "VERSION:1.0 \r\n";
+                String prodid =     "PRODID://Elara/lofy/tanare/delp/314sum2015// \r\n";
+                String calBegin =   "BEGIN:VCALENDAR \r\n";
+                String calEnd =     "END:VCALENDAR \r\n";
+                String eventBegin = "BEGIN:VEVENT \r\n";
+                String eventEnd =   "END:VEVENT \r\n";
+
+                try {
+
+                File file = new File(builder.toString());
+
+                // if file doesnt exists, then create it
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+
+                FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(calBegin);
+                bw.write(version);
+                bw.write(prodid);
+                bw.write(eventBegin);
+                bw.write(testExample);
+                bw.write(eventEnd);
+                bw.write(calEnd);
+
+                bw.close();
+
+                System.out.println("Done");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+                
                 System.exit(0);
             }
         }
@@ -106,7 +158,6 @@ public class View implements Observer {
         frame.setVisible(true);
 
         //look at creating the action listener against the frame - if update check hours of model against head priority item. 
-
         new AlarmListner(model, q);
     }
 
