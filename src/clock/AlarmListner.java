@@ -29,14 +29,14 @@ public class AlarmListner {
                 Calendar date = Calendar.getInstance();
                 
 
-                System.out.println("Action Listner");
+                System.out.println("ALARM Listner");
                 try {
                     long alarmMillis = queue.head().storedtime.getTimeInMillis()/10000;
                     long currentMillis = date.getTimeInMillis()/10000;
                     System.out.println(queue.head());
                     System.out.println("Current Time in millis: "+ date.getTimeInMillis() + "  / by 100000  " + currentMillis);
                     System.out.println("Alarm Hourmillis: "+queue.head().storedtime.getTimeInMillis()+ "  / by 100000  " + alarmMillis);
-
+                    //System.out.println(queue.head().storedtime.toInstant()); used as a test for the exit saving file
                     if (alarmMillis == currentMillis) {
                         System.out.println("ALARM TRIGGER WEE WOO");
                         q.remove();

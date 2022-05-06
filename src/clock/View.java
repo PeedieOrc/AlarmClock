@@ -4,10 +4,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.time.LocalTime;
+import java.io.BufferedWriter;
+import java.io.File;
 import javax.swing.*;
 import java.util.Observer;
 import java.util.Observable;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.logging.Logger;
 
 public class View implements Observer {
 
@@ -63,6 +68,47 @@ public class View implements Observer {
         class ExitItemListener implements ActionListener {
 
             public void actionPerformed(ActionEvent event) {
+                String filename = "Alarms.ics";
+                try {
+                    String time = q.head().storedtime.toInstant().toString().replace( ":" , "" ).replace( "-" , "" );
+
+                    System.out.println(time);
+                    StringBuilder builder = new StringBuilder();
+                    builder.append(filename);
+                    
+                    String personname = q.head().name+"\r\n";
+                    String personCalander = q.head().storedtime.getTimeInMillis()+"\r\n";
+                    String peronLongtime = ""+ q.head().longtime+"\r\n";
+
+
+
+                    try {
+
+                        File file = new File(builder.toString());
+
+                        // if file doesnt exists, then create it
+                        if (!file.exists()) {
+                            file.createNewFile();
+                        }
+
+                        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(personname);
+                        bw.write(personCalander);
+                        bw.write(peronLongtime);
+
+
+                        bw.close();
+
+                        System.out.println("Done");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (QueueUnderflowException ex) {
+                    Logger.getLogger("something went wrong");
+                }
+
                 System.exit(0);
             }
         }
@@ -106,7 +152,6 @@ public class View implements Observer {
         frame.setVisible(true);
 
         //look at creating the action listener against the frame - if update check hours of model against head priority item. 
-
         new AlarmListner(model, q);
     }
 
